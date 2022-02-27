@@ -2,6 +2,7 @@ if cfg.esxLegacy == false then
     ESX = nil
     TriggerEvent("esx:getSharedObject", function(obj) ESX = obj end)
 end
+local maxmoney = 1100
 
 RegisterNetEvent("cow:getmilk")
 AddEventHandler("cow:getmilk", function()
@@ -38,7 +39,6 @@ AddEventHandler("potato:getpotato", function()
     end
 end)
 
-local maxmoney = 1100
 RegisterNetEvent("milk:sell")
 AddEventHandler("milk:sell", function()
     local _source = source
@@ -60,7 +60,6 @@ AddEventHandler("milk:sell", function()
     end
 end)
 
-local maxmoney = 1100
 RegisterNetEvent("apple:sell")
 AddEventHandler("apple:sell", function()
     local _source = source
@@ -82,7 +81,6 @@ AddEventHandler("apple:sell", function()
     end
 end)
 
-local maxmoney = 1100
 RegisterNetEvent("potato:sell")
 AddEventHandler("potato:sell", function()
     local _source = source
