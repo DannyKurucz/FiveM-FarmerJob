@@ -148,7 +148,7 @@ CreateThread(function()
                         ShowFloatingHelpNotification(cfg.translation['apple'], pos)
                         if IsControlJustPressed(0, 38) then
                             apple = true
-                            TriggerServerEvent("apple:getapple")
+                            TriggerServerEvent("getItem", "apple")
 							TaskStartScenarioInPlace(playerPed, 'PROP_HUMAN_BUM_BIN', 0, true)
 							Wait(5000)
 							ClearPedTasks(playerPed)
@@ -178,7 +178,7 @@ CreateThread(function()
                         ShowFloatingHelpNotification(cfg.translation['potato'], pos)
                         if IsControlJustPressed(0, 38) then
                             potato = true
-                            TriggerServerEvent("potato:getpotato")
+                            TriggerServerEvent("getItem", "patato")
 							TaskStartScenarioInPlace(playerPed, 'PROP_HUMAN_BUM_BIN', 0, true)
 							Wait(5000)
 							ClearPedTasks(playerPed)
@@ -207,7 +207,7 @@ CreateThread(function()
                         ShowFloatingHelpNotification(cfg.translation['sellmilk'], pos)
                         if IsControlJustPressed(0, 38) and dist < 3 then
                             sellmilkmarker = true
-							TriggerServerEvent("milk:sell")
+							TriggerServerEvent("sellItem", "milk", cfg.Money)
 							Wait(250)
                         end
                     end
@@ -233,7 +233,7 @@ CreateThread(function()
                         ShowFloatingHelpNotification(cfg.translation['sellapple'], pos)
                         if IsControlJustPressed(0, 38) and dist < 3 then
                             sellapplemarker = true
-							TriggerServerEvent("apple:sell")
+							TriggerServerEvent("sellItem", "apple", cfg.Money)
 							Wait(250)
                         end
                     end
@@ -260,7 +260,7 @@ CreateThread(function()
                         ShowFloatingHelpNotification(cfg.translation['sellpotato'], pos)
                         if IsControlJustPressed(0, 38) and dist < 3 then
                             sellpotatomarker = true
-							TriggerServerEvent("potato:sell")
+							TriggerServerEvent("sellItem", "patato", cfg.Money)
 							Wait(250)
 						
                         end
@@ -283,7 +283,7 @@ AddEventHandler("cow:milk", function()
 		Timeout = 5000, -- Duration before minigame is cancelled
 		onComplete = function(success)
 				if success then
-					TriggerServerEvent("cow:getmilk")
+					TriggerServerEvent("getItem", "milk")
 					ClearPedTasks(playerPed)
 				else
 					Notify("Try again")
