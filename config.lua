@@ -37,9 +37,6 @@ cfg = {
         ['sellmilk'] = "Sell Milk [E]",
         ['sellapple'] = "Sell Apple [E]",
         ['sellpotato'] = "Sell Potato [E]",
-        ['nomilk'] = "You don't have milk",
-        ['noapple'] = "You don't have apple",
-        ['nopotato'] = "You don't have potato",
         ['limit'] = "You have no place in inventory"
     },
 
