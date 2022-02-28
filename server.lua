@@ -2,102 +2,34 @@ if cfg.esxLegacy == false then
     ESX = nil
     TriggerEvent("esx:getSharedObject", function(obj) ESX = obj end)
 end
-local maxmoney = 1100
 
-RegisterNetEvent("cow:getmilk")
-AddEventHandler("cow:getmilk", function()
-    local _source = source
-    local xPlayer = ESX.GetPlayerFromId(_source)
-    if xPlayer.canCarryItem("milk", 1) then
-        xPlayer.addInventoryItem("milk", 1)
+RegisterNetEvent("getItem", function(item)
+    local src = source
+    local Player = ESX.GetPlayerFromId(src)
+
+    if item ~= "apple" or item ~= "milk" or item ~= "patato" then
+        DropPlayer(src, "Opps!")
     else
-        TriggerClientEvent('esx:showNotification', source, cfg.translation['limit'])
-
-    end
-end)
-
-RegisterNetEvent("apple:getapple")
-AddEventHandler("apple:getapple", function()
-    local _source = source
-    local xPlayer = ESX.GetPlayerFromId(_source)
-    if xPlayer.canCarryItem("apple", 1) then
-        xPlayer.addInventoryItem("apple", 1)
-    else
-        TriggerClientEvent('esx:showNotification', source, cfg.translation['limit'])
-    end
-end)
-
-RegisterNetEvent("potato:getpotato")
-AddEventHandler("potato:getpotato", function()
-    local _source = source
-    local xPlayer = ESX.GetPlayerFromId(_source)
-    if xPlayer.canCarryItem("potato", 1) then
-        xPlayer.addInventoryItem("potato", 1)
-    else
-        TriggerClientEvent('esx:showNotification', source, cfg.translation['limit'])
-
-    end
-end)
-
-RegisterNetEvent("milk:sell")
-AddEventHandler("milk:sell", function()
-    local _source = source
-    local xPlayer = ESX.GetPlayerFromId(_source)
-    local money = 1000
-    if xPlayer ~= nil then
-        if money >= maxmoney then
-            xPlayer.kick("Cheater")
+        if Player.canCarryItem(item, 1) then
+            Player.addInventoryItem(item, 1)
         else
-            local randomMoney = math.random(30,60)
-            if xPlayer.getInventoryItem("milk").count > 0 then
-                xPlayer.addMoney(randomMoney)
-                xPlayer.removeInventoryItem("milk", 1)
-            else
-                TriggerClientEvent('esx:showNotification', source, cfg.translation['nomilk'])
-
-            end
+            TriggerClientEvent('esx:showNotification', src, cfg.translation['limit'])
         end
     end
 end)
 
-RegisterNetEvent("apple:sell")
-AddEventHandler("apple:sell", function()
-    local _source = source
-    local xPlayer = ESX.GetPlayerFromId(_source)
-    local money = 1000
-    if xPlayer ~= nil then
-        if money >= maxmoney then
-            xPlayer.kick("Cheater")
-        else
-            local randomMoney = math.random(30,60)
-            if xPlayer.getInventoryItem("apple").count > 0 then
-                xPlayer.addMoney(randomMoney)
-                xPlayer.removeInventoryItem("apple", 1)
-                
-            else
-                TriggerClientEvent('esx:showNotification', source, cfg.translation['noapple'])
-            end
-        end
-    end
-end)
+RegisterNetEvent("sellItem", function(item, getMoney)
+    local src = source
+    local Player = ESX.GetPlayerFromId(src)
 
-RegisterNetEvent("potato:sell")
-AddEventHandler("potato:sell", function()
-    local _source = source
-    local xPlayer = ESX.GetPlayerFromId(_source)
-    local money = 1000
-    if xPlayer ~= nil then
-        if money >= maxmoney then
-            xPlayer.kick("Cheater")
+    if getMoney ~= cfg.Money then
+        DropPlayer(src, "Opps!")
+    else
+        if Player.getInventoryItem(item, 1).count >= 1 then
+            Player.removeInventoryItem(item, 1)
+            Player.addMoney(getMoney)
         else
-            local randomMoney = math.random(30,60)
-            if xPlayer.getInventoryItem("potato").count > 0 then
-                xPlayer.addMoney(randomMoney)
-                xPlayer.removeInventoryItem("potato", 1)
-            else
-                TriggerClientEvent('esx:showNotification', source, cfg.translation['nopotato'])
-
-            end
+            TriggerClientEvent('esx:showNotification', src, "There's not enough " ..item.. " on it!")
         end
     end
 end)
