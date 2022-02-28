@@ -1,4 +1,5 @@
 cfg = {
+    Money = math.random(30. 60)
     esxLegacy = true,
 
     blip = {
