@@ -314,3 +314,13 @@ exports.qtarget:AddTargetModel({"a_c_cow"}, {
 	distance = 2
 })
 
+-- IN TEST
+
+zastavitkravu = function()
+local player = PlayerPedId()
+	if player then
+		GetClosestPed(GetEntityCoords(PlayerPedId()), 5, true, true, true, true, 28)
+		print("funguje")
+	end
+end
+
