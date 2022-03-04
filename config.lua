@@ -31,8 +31,8 @@ cfg = {
     },
 
     translation = {
-        ['apple'] = "Get Apple [E]",
-        ['potato'] = "Get Potato [E]",
+        ['apple'] = "Apple [E]",
+        ['potato'] = "Potato [E]",
         ['sellmilk'] = "Sell Milk [E]",
         ['sellapple'] = "Sell Apple [E]",
         ['sellpotato'] = "Sell Potato [E]",
